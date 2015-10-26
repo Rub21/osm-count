@@ -31,16 +31,8 @@ module.exports = {
 		dist_vx: 0,
 		dist_total: 0
 	},
-	obj: function() {
-		return {
-			user: null,
-			osm_nodevx: 0,
-			osm_nodev1: 0,
-			osm_wayv1: 0,
-			osm_wayvx: 0,
-			osm_relationv1: 0,
-			osm_relationvx: 0,
-			changeset: []
-		};
+	users: {
+		
 	}
+
 }
