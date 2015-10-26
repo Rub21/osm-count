@@ -1,0 +1,12 @@
+# Some Files #
+###################
+*.csv
+*.gz
+*.geojson
+*.osc
+*.jar
+*.osm
+*.05m
+*.zip
+*.json
+osmfilter_tempfile.8910.0
