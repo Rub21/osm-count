@@ -3,8 +3,8 @@ User | Num OSM Objects | Num Changeset | Num nodes V1 | Num nodes Vx | Num ways 
 hwoehrle|2255|4|29|1811|405|10|0|0
 drnoble|678|3|3|553|117|5|0|0
 BTH|294|47|70|204|8|12|0|0
-Notaris|259|3|99|145|11|4|0|0
 cweb|224|3|0|194|30|0|0|0
+Notaris|259|3|99|145|11|4|0|0
 jorge_o|101|1|22|77|0|2|0|0
 mexico_boundaries_import|79|1|0|79|0|0|0|0
 fx99|63|1|0|63|0|0|0|0

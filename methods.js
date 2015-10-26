@@ -84,6 +84,40 @@ module.exports = {
 		++counter.users[user].total_obj;
 		counter.users[user].changeset = _.uniq(counter.users[user].changeset);
 		return counter;
+	},
+	count_objs: function(osm, counter) {
+		switch (osm.type) {
+			case "node":
+				var node = osm;
+				if (node.version === 1) {
+					++counter.nodes.v1;
+				} else {
+					++counter.nodes.vx;
+				}
+				++counter.nodes.total;
+				break;
+
+			case "way":
+				var way = osm;
+				if (way.version === 1) {
+					++counter.ways.v1;
+				} else {
+					++counter.ways.vx;
+				}
+				++counter.ways.total;
+				break;
+			case "relation":
+				var relation = osm;
+				if (relation.version === 1) {					
+					++counter.relations.v1;
+				} else {
+					++counter.relations.vx;
+				}
+				++counter.relations.total;
+				break;
+		}
+
+		return counter;
 	}
 
 }
