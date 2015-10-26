@@ -12,6 +12,7 @@ var reader = new osmium.Reader(osmfile);
 var location_handler = new osmium.LocationHandler();
 var handler = new osmium.Handler();
 
+
 handler.on('node', function(node) {
 	//count users
 	counter = mt.count_per_user(node, counter);
@@ -25,15 +26,16 @@ handler.on('way', function(way) {
 	counter = mt.count_per_user(way, counter);
 	counter = mt.count_objs(way, counter);
 	//highways
+	//console.log(mt.distance_way(way));
 	if (way.tags().highway !== undefined) {
-		counter.highways.dist_total += mt.distance_way(way);
+		//counter.highways.dist_total += mt.distance_way(way);
 		counter.highways.total += 1;
 		//count num of ways
 		if (way.version === 1) {
-			counter.highways.dist_v1 += mt.distance_way(way);
+			//counter.highways.dist_v1 += mt.distance_way(way);
 			counter.highways.v1 += 1;
 		} else {
-			counter.highways.dist_vx += mt.distance_way(way);
+			//counter.highways.dist_vx += mt.distance_way(way);
 			counter.highways.vx += 1;
 		}
 	}
@@ -80,4 +82,4 @@ handler.on('done', function() {
 
 });
 
-osmium.apply(reader, location_handler, handler);
+osmium.apply(reader, handler);

@@ -1,9 +1,21 @@
 var turf = require('turf');
 var _ = require('underscore');
 
+var preserve_type = {
+    "motorway": true,
+    "primary": true,
+    "secondary": true,
+    "tertiary": true,
+    "trunk": true,
+    "residential": true,
+    "unclassified": true,
+    "service": true
+};
+
 module.exports = {
 	distance_way: function(way) {
 		//distance just for roads
+		//console.log(way.geojson());
 		if (way.tags().highway !== undefined) {
 			var line = {
 				"type": "Feature",
