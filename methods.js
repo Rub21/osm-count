@@ -1,17 +1,6 @@
 var turf = require('turf');
 var _ = require('underscore');
 
-var preserve_type = {
-	"motorway": true,
-	"primary": true,
-	"secondary": true,
-	"tertiary": true,
-	"trunk": true,
-	"residential": true,
-	"unclassified": true,
-	"service": true
-};
-
 module.exports = {
 	count_tags: function(osm, counter) {
 		_.each(osm.tags(), function(val, key) {
@@ -62,7 +51,6 @@ module.exports = {
 		}
 		++counter.users[user].total;
 		counter.users[user].changeset = _.uniq(counter.users[user].changeset);
-		return counter;
 	},
 	count_objs: function(osm, counter) {
 		switch (osm.type) {
@@ -82,7 +70,6 @@ module.exports = {
 				counter.relations.total++;
 				break;
 		}
-		//return counter;
 	},
 	roads_distance: function(osm, counter) {
 		if (osm.type === 'way') {
@@ -101,7 +88,6 @@ module.exports = {
 			counter.roads_distance.total += distance;
 			counter.roads_distance.type = "miles";
 		}
-		//return counter;
 	}
 
 }
