@@ -14,22 +14,11 @@ module.exports = {
 		vx: 0,
 		total: 0
 	},
-	//by tags
-	buildings: {
+	users: {},
+	tags: {},
+	roads_distance: {
 		v1: 0,
 		vx: 0,
 		total: 0
-	},
-	highways: {
-		v1: 0,
-		vx: 0,
-		total: 0,
-		dist_v1: 0,
-		dist_vx: 0,
-		dist_total: 0
-	},
-	users: {
-
 	}
-
 }
