@@ -8,6 +8,7 @@ var json2mark = require("./json2mark");
 
 var osmobj = function() {
 	return {
+		type: null,
 		total: 0,
 		v1: 0,
 		vx: 0,
@@ -33,6 +34,7 @@ var buildings = 0
 
 stream.on('data', function(osm) {
 	mt.count_per_user(osm, counter);
+	mt.count_objs(osm, counter);
 	if (_.size(osm.tags()) > 0) {
 		mt.count_tags(osm, counter);
 	}
@@ -44,6 +46,7 @@ stream.on('end', function() {
 		v.changeset = v.changeset.length;
 		return v;
 	});
+	json2mark.json2table('osm_objects', [counter.ways, counter.nodes, counter.relations]);
 	json2mark.json2table('users', counter.users)
 	json2mark.json2table('tags', counter.tags);
 	json2mark.json2table('roads-distance', [counter.roads_distance]);
