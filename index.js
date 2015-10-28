@@ -35,7 +35,7 @@ stream.on('data', function(osm) {
 	if (_.size(osm.tags()) > 0) {
 		mt.count_tags(osm, counter);
 	}
-	mt.roads_distance(osm, counter);
+	//mt.roads_distance(osm, counter);
 });
 
 stream.on('end', function() {
