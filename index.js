@@ -1,7 +1,7 @@
 var fs = require('fs');
 var osmium = require('osmium');
 var turf = require('turf');
-var argv = require('optimist').argv;
+var argv = require('minimist')(process.argv.slice(2));
 var _ = require('underscore');
 var mt = require("./methods");
 var json2mark = require("./json2mark");
@@ -28,9 +28,6 @@ var osmfile = argv.osmfile;
 var file = new osmium.File(osmfile);
 var location_handler = new osmium.LocationHandler();
 var stream = new osmium.Stream(new osmium.Reader(file, location_handler));
-
-var total = 0
-var buildings = 0
 
 stream.on('data', function(osm) {
 	mt.count_per_user(osm, counter);
