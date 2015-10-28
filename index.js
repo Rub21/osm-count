@@ -13,48 +13,69 @@ var location_handler = new osmium.LocationHandler();
 var handler = new osmium.Handler();
 
 
-handler.on('node', function(node) {
-	//count users
-	counter = mt.count_per_user(node, counter);
-	//count nodes
-	counter = mt.count_objs(node, counter);
 
+stream.on('data', function(way) {
+  if(way.type === 'way'){
+    try{
+      var tags = way.tags()
+      if(tags.building) buildings++
+      else if(tags.highway || tags.bridge) {
+        var line = turf.linestring(way.node_coordinates().map(function(coord){ return [coord.lon, coord.lat] }))
+        total += turf.lineDistance(line, 'miles')
+      }
+    } catch(e){
+
+    }
+  }
 });
 
-handler.on('way', function(way) {
-	//count users
-	counter = mt.count_per_user(way, counter);
-	counter = mt.count_objs(way, counter);
-	//highways
-	//console.log(mt.distance_way(way));
-	if (way.tags().highway !== undefined) {
-		//counter.highways.dist_total += mt.distance_way(way);
-		counter.highways.total += 1;
-		//count num of ways
-		if (way.version === 1) {
-			//counter.highways.dist_v1 += mt.distance_way(way);
-			counter.highways.v1 += 1;
-		} else {
-			//counter.highways.dist_vx += mt.distance_way(way);
-			counter.highways.vx += 1;
-		}
-	}
-	//buildings
-	if (way.tags().building !== undefined) {
-		counter.buildings.total += 1;
-		//count num of buildings
-		if (way.version === 1) {
-			counter.buildings.v1 += 1;
-		} else {
-			counter.buildings.vx += 1;
-		}
-	}
-});
-handler.on('relation', function(relation) {
-	//count users
-	counter = mt.count_per_user(relation, counter);
-	counter = mt.count_objs(relation, counter);
-});
+
+
+
+
+
+// handler.on('node', function(node) {
+// 	//count users
+// 	counter = mt.count_per_user(node, counter);
+// 	//count nodes
+// 	counter = mt.count_objs(node, counter);
+
+// });
+
+// handler.on('way', function(way) {
+// 	//count users
+// 	counter = mt.count_per_user(way, counter);
+// 	counter = mt.count_objs(way, counter);
+// 	//highways
+// 	//console.log(mt.distance_way(way));
+// 	if (way.tags().highway !== undefined) {
+// 		//counter.highways.dist_total += mt.distance_way(way);
+// 		counter.highways.total += 1;
+// 		//count num of ways
+// 		if (way.version === 1) {
+// 			//counter.highways.dist_v1 += mt.distance_way(way);
+// 			counter.highways.v1 += 1;
+// 		} else {
+// 			//counter.highways.dist_vx += mt.distance_way(way);
+// 			counter.highways.vx += 1;
+// 		}
+// 	}
+// 	//buildings
+// 	if (way.tags().building !== undefined) {
+// 		counter.buildings.total += 1;
+// 		//count num of buildings
+// 		if (way.version === 1) {
+// 			counter.buildings.v1 += 1;
+// 		} else {
+// 			counter.buildings.vx += 1;
+// 		}
+// 	}
+// });
+// handler.on('relation', function(relation) {
+// 	//count users
+// 	counter = mt.count_per_user(relation, counter);
+// 	counter = mt.count_objs(relation, counter);
+// });
 
 
 handler.on('done', function() {
