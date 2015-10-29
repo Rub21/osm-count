@@ -23,29 +23,30 @@ module.exports = {
 			counter.users[user] = {
 				user: user,
 				total: 0,
-				osm_nodevx: 0,
-				osm_nodev1: 0,
-				osm_wayv1: 0,
-				osm_wayvx: 0,
-				osm_relationv1: 0,
-				osm_relationvx: 0,
-				changeset: []
+				changeset: [],
+				Wv1: 0,
+				Wvx: 0,
+				Nv1: 0,
+				Nvx: 0,
+				Rv1: 0,
+				Rvx: 0
+
 			};
 		}
 		switch (osm.type) {
 			case "node":
 				var node = osm;
-				(node.version === 1) ? counter.users[node.user].osm_nodev1++: counter.users[node.user].osm_nodevx++;
-				counter.users[node.user].changeset.push(node.changeset);
+				(node.version == 1) ? counter.users[user].Nv1++: counter.users[user].Nvx++;
+				counter.users[user].changeset.push(node.changeset);
 				break;
 			case "way":
 				var way = osm;
-				(way.version === 1) ? counter.users[user].osm_wayv1: counter.users[user].osm_wayvx++;
+				(way.version == 1) ? counter.users[user].Wv1++: counter.users[user].Wvx++;
 				counter.users[user].changeset.push(way.changeset);
 				break;
 			case "relation":
 				var relation = osm;
-				(relation.version === 1) ? counter.users[user].osm_relationv1++: counter.users[user].osm_relationvx++;
+				(relation.version == 1) ? counter.users[user].Rv1++: counter.users[user].Rvx++;
 				counter.users[user].changeset.push(relation.changeset);
 				break;
 		}

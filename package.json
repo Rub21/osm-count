@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "minimist": "^1.2.0",
+    "numeral": "^1.5.3",
     "osmium": "https://github.com/osmcode/node-osmium/tarball/master",
     "turf": "^2.0.2",
     "underscore": "^1.8.3"

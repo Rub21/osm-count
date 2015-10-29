@@ -23,6 +23,7 @@ var counter = {
 	tags: {},
 	roads_distance: new osmobj()
 };
+
 var timestamp = 0;
 if (argv.timestamp !== undefined) {
 	timestamp = argv.timestamp;
