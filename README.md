@@ -25,13 +25,7 @@ node index.js --osmfile osm-extract/osm.osm.bz --usersfile osm-extract/users
 
 ```
 
-#### Counter objects specific range specific date.
-
-```
-node index.js --osmfile osm-extract/osm.osm.bz --usersfile osm-extract/users
-
-```
-
+We can think if I filtered per users the OSM file in `osm-extract`, but is necessary filter again because when we created the file we are using ` --complete-ways` it update with many nodes which are not made or update per data-team.
 
 In both cases the output files are  in markdown tables: 
 
