@@ -21,7 +21,7 @@ npm install
 
 #### Install requirements libraries
 
-` cd osm-object-counter/osm-extract/ && ./install.sh`
+` cd osm-extract/ && ./install.sh`
 
 
 #### Build the OSM file for whole world 
