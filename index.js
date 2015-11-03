@@ -24,17 +24,31 @@ var counter = {
 	roads_distance: new osmobj()
 };
 
-var timestamp = 0;
-if (argv.timestamp !== undefined) {
-	timestamp = argv.timestamp;
+
+var users = []
+if (argv.fileusers !== undefined) {
+	fs.readFile(argv.fileusers, 'utf8', function(err, data) {
+		if (err) throw err;
+		users = data.replace('@', '').split(',');
+	});
 }
+
 var osmfile = argv.osmfile;
 var file = new osmium.File(osmfile);
 var location_handler = new osmium.LocationHandler();
 var stream = new osmium.Stream(new osmium.Reader(file, location_handler));
 
 stream.on('data', function(osm) {
-	if (osm.timestamp_seconds_since_epoch > timestamp) {
+	if (users.length > 0) {
+		if ( && users.indexOf(osm.user) > 0) {
+			mt.count_per_user(osm, counter);
+			mt.count_objs(osm, counter);
+			if (_.size(osm.tags()) > 0) {
+				mt.count_tags(osm, counter);
+			}
+			mt.roads_distance(osm, counter);
+		}
+	} else {
 		mt.count_per_user(osm, counter);
 		mt.count_objs(osm, counter);
 		if (_.size(osm.tags()) > 0) {
@@ -42,7 +56,6 @@ stream.on('data', function(osm) {
 		}
 		mt.roads_distance(osm, counter);
 	}
-
 });
 
 stream.on('end', function() {
