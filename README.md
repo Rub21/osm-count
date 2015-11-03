@@ -3,8 +3,8 @@
 Prepare your OSM file using [osm-extract](https://github.com/Rub21/osm-object-counter/tree/master/osm-extract)
 
 ```
-git clone https://github.com/Rub21/osm-count.git
-cd osm-count
+https://github.com/Rub21/osm-object-counter.git
+cd osm-object-counter
 npm install
 
 ```

@@ -14,7 +14,7 @@ Build you osm file from each date as you want. you can build the OSM file in a i
 
 ```
 git clone https://github.com/Rub21/osm-object-counter.git
-cd osm-count
+cd osm-object-counter
 npm install
 
 ```
