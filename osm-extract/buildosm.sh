@@ -43,11 +43,12 @@ if [ -n "$4" ]; then
   done
   osmconvert *-users.osm -o=osm.osm
   rm *-users.osm
+  rm u
+  rm temp.osm
+  rm temp
 else
   mv temp.osm osm.osm
 fi
 
 bzip2 osm.osm
-rm u
-rm temp.osm
-rm temp
+exit 

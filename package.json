@@ -1,10 +1,14 @@
 {
   "name": "osm-object-counter",
   "version": "1.0.0",
-  "description": "",
+  "description": "Prepare your OSM file using [osm-extract](https://github.com/Rub21/osm-object-counter/tree/master/osm-extract)",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "dependencies": {
+    "minimist": "^1.2.0",
+    "osmium": "^0.4.2",
+    "turf": "^2.0.2",
+    "numeral": "^1.5.3",
+    "underscore": "^1.8.3"
   },
   "dependencies": {
     "minimist": "^1.2.0",
@@ -12,6 +16,10 @@
     "osmium": "https://github.com/osmcode/node-osmium/tarball/master",
     "turf": "^2.0.2",
     "underscore": "^1.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -22,6 +30,5 @@
   "bugs": {
     "url": "https://github.com/Rub21/osm-object-counter/issues"
   },
-  "homepage": "https://github.com/Rub21/osm-object-counter#readme",
-  "devDependencies": {}
+  "homepage": "https://github.com/Rub21/osm-object-counter#readme"
 }
