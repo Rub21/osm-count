@@ -9,7 +9,7 @@ npm install
 
 ```
 
-#### Counter all objects
+#### Counter all objects for all users
 
 ```
 node index.js --osmfile osm-extract/osm.osm.bz
@@ -17,7 +17,10 @@ node index.js --osmfile osm-extract/osm.osm.bz
 ```
 
 
-#### Counter objects per specific users
+#### Counter objects by specific users
+
+note:
+If you filter your OSM file per user in `osm-extract` is necessary to filter again as next command line because we use ` --complete-ways`, the osm file contain nodes as a part of ways which are not made or update by the specific users.
 
 
 ```
@@ -25,7 +28,7 @@ node index.js --osmfile osm-extract/osm.osm.bz --usersfile osm-extract/users
 
 ```
 
-We can think if I filtered per users the OSM file in `osm-extract`, but is necessary filter again because when we created the file we are using ` --complete-ways` it update with many nodes which are not made or update per data-team.
+
 
 In both cases the output files are  in markdown tables: 
 
