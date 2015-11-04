@@ -30,16 +30,15 @@ if (argv.usersfile !== undefined) {
 	fs.readFile(argv.usersfile, 'utf8', function(err, data) {
 		if (err) throw err;
 		users = data.replace(/@/g, '').split(',');;
-		count();
+
 	});
 }
 
-function count() {
+setTimeout(function() {
 	var osmfile = argv.osmfile;
 	var file = new osmium.File(osmfile);
 	var location_handler = new osmium.LocationHandler();
 	var stream = new osmium.Stream(new osmium.Reader(file, location_handler));
-
 	stream.on('data', function(osm) {
 		if (users.length > 0) {
 			if (users.indexOf(osm.user) > 0) {
@@ -70,4 +69,4 @@ function count() {
 		json2mark.json2table('tags', counter.tags);
 		json2mark.json2table('roads-distance', [counter.roads_distance]);
 	});
-}
+}, 2000);
