@@ -26,8 +26,6 @@ if [ -n "$3" ]; then
   echo "====================== Clip for $3 ======================"
   osmconvert temp.osm -B=$3 --complete-ways -o=b-temp.osm
   mv b-temp.osm temp.osm
-else
-  mv temp.osm osm.osm
 fi
 
 #users
@@ -41,14 +39,12 @@ if [ -n "$4" ]; then
     do
       osmfilter temp.osm --keep=@user=$j -o=$j-users.osm
   done
-  osmconvert *-users.osm -o=osm.osm
+  osmconvert *-users.osm -o=c-tem.osm
+  mv c-temp.osm temp.osm  
   rm *-users.osm
   rm u
-  rm temp.osm
   rm temp
-else
-  mv temp.osm osm.osm
 fi
-
+mv temp.osm osm.osm
 bzip2 osm.osm
 exit 
