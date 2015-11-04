@@ -1,10 +1,10 @@
 #  OSM objects counter 
 
-Prepare your OSM file using [osm-extract](https://github.com/Rub21/osm-object-counter/tree/master/osm-extract)
+Prepare your OSM file using [osm-extract](https://github.com/Rub21/osm-objects-counter/tree/master/osm-extract)
 
 ```
-https://github.com/Rub21/osm-object-counter.git
-cd osm-object-counter
+https://github.com/Rub21/osm-objects-counter.git
+cd osm-objects-counter
 npm install
 
 ```
@@ -28,14 +28,12 @@ node index.js --osmfile osm-extract/osm.osm.bz --usersfile osm-extract/users
 
 ```
 
-
-
 In both cases the output files are  in markdown tables: 
 
-- osm_objects.md
-- users.md
-- tags.md
-- roads_distance.md
+- [osm_objects.md](https://github.com/Rub21/osm-objects-counter/blob/master/osm_objects.md)
+- [users.md](https://github.com/Rub21/osm-objects-counter/blob/master/users.md)
+- [tags.md](https://github.com/Rub21/osm-objects-counter/blob/master/tags.md)
+- [roads_distance.md](https://github.com/Rub21/osm-objects-counter/blob/master/roads-distance.md)
  
 
  

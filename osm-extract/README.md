@@ -13,8 +13,8 @@ Build you osm file from each date as you want. You can use a instance or in your
 #### Clone the repository
 
 ```
-git clone https://github.com/Rub21/osm-object-counter.git
-cd osm-object-counter
+git clone https://github.com/Rub21/osm-objects-counter.git
+cd osm-objects-counter
 npm install
 
 ```
@@ -44,7 +44,7 @@ output: **osm.osm.bz2**
 
 ####  Build the OSM file for specific area and specifics users 
 
-In [/osm-extract/users](https://github.com/Rub21/osm-object-counter/blob/master/osm-extract/users) file you can find a list of users, if you want you can add more users or remove them
+In [/osm-extract/users](https://github.com/Rub21/osm-objects-counter/blob/master/osm-extract/users) file you can find a list of users, if you want you can add more users or remove them
 
 When your users file is done, execute the next command line. 
 
