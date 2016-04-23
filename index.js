@@ -12,7 +12,7 @@ var osmobj = function() {
 		total: 0,
 		v1: 0,
 		vx: 0,
-	}
+	};
 };
 
 var counter = {
@@ -24,12 +24,11 @@ var counter = {
 	roads_distance: new osmobj()
 };
 
-
-var users = []
+var users = [];
 if (argv.usersfile !== undefined) {
 	fs.readFile(argv.usersfile, 'utf8', function(err, data) {
 		if (err) throw err;
-		users = data.replace(/@/g, '').split(',');;
+		users = data.replace(/@/g, '').split(',');
 
 	});
 }
@@ -65,7 +64,7 @@ setTimeout(function() {
 			return v;
 		});
 		json2mark.json2table('osm_objects', [counter.ways, counter.nodes, counter.relations]);
-		json2mark.json2table('users', counter.users)
+		json2mark.json2table('users', counter.users);
 		json2mark.json2table('tags', counter.tags);
 		json2mark.json2table('roads-distance', [counter.roads_distance]);
 	});

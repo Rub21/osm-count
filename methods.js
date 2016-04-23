@@ -77,12 +77,12 @@ module.exports = {
 			var way = osm;
 			var distance = 0;
 			try {
-				var tags = way.tags()
+				var tags = way.tags();
 				if (tags.highway || tags.bridge) {
 					var line = turf.linestring(way.node_coordinates().map(function(coord) {
-						return [coord.lon, coord.lat]
-					}))
-					distance = turf.lineDistance(line, 'miles')
+						return [coord.lon, coord.lat];
+					}));
+					distance = turf.lineDistance(line, 'miles');
 				}
 			} catch (e) {}
 			(way.version == 1) ? counter.roads_distance.v1 += distance: counter.roads_distance.vx += distance;
@@ -90,5 +90,4 @@ module.exports = {
 			counter.roads_distance.type = "miles";
 		}
 	}
-
-}
+};
