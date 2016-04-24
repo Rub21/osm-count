@@ -5,6 +5,7 @@ var argv = require('minimist')(process.argv.slice(2));
 var _ = require('underscore');
 var mt = require("./methods");
 var json2mark = require("./json2mark");
+var randomcolor = require('randomcolor');
 
 var osmobj = function() {
 	return {
@@ -24,6 +25,7 @@ var counter = {
 	roads_distance: new osmobj()
 };
 
+var objUsers = {};
 var users = [];
 if (argv.usersfile !== undefined) {
 	fs.readFile(argv.usersfile, 'utf8', function(err, data) {
@@ -39,33 +41,43 @@ setTimeout(function() {
 	var location_handler = new osmium.LocationHandler();
 	var stream = new osmium.Stream(new osmium.Reader(file, location_handler));
 	stream.on('data', function(osm) {
-		if (users.length > 0) {
-			if (users.indexOf(osm.user) > 0) {
-				mt.count_per_user(osm, counter);
-				mt.count_objs(osm, counter);
-				if (_.size(osm.tags()) > 0) {
-					mt.count_tags(osm, counter);
-				}
-				mt.roads_distance(osm, counter);
-			}
-		} else {
-			mt.count_per_user(osm, counter);
-			mt.count_objs(osm, counter);
-			if (_.size(osm.tags()) > 0) {
-				mt.count_tags(osm, counter);
-			}
-			mt.roads_distance(osm, counter);
+
+		if (osm.uid > 510836) {
+			objUsers[osm.uid] = osm.user;
 		}
+		// if (users.length > 0) {
+		// 	if (users.indexOf(osm.user) > 0) {
+		// 		mt.count_per_user(osm, counter);
+		// 		mt.count_objs(osm, counter);
+		// 		if (_.size(osm.tags()) > 0) {
+		// 			mt.count_tags(osm, counter);
+		// 		}
+		// 		mt.roads_distance(osm, counter);
+		// 	}
+		// } else {
+		// 	mt.count_per_user(osm, counter);
+		// 	mt.count_objs(osm, counter);
+		// 	if (_.size(osm.tags()) > 0) {
+		// 		mt.count_tags(osm, counter);
+		// 	}
+		// 	mt.roads_distance(osm, counter);
+		// }
 	});
 
 	stream.on('end', function() {
-		_.each(counter.users, function(v, k) {
-			v.changeset = v.changeset.length;
-			return v;
+		// _.each(counter.users, function(v, k) {
+		// 	v.changeset = v.changeset.length;
+		// 	return v;
+		// });
+		// json2mark.json2table('osm_objects', [counter.ways, counter.nodes, counter.relations]);
+		// json2mark.json2table('users', counter.users);
+		// json2mark.json2table('tags', counter.tags);
+		// json2mark.json2table('roads-distance', [counter.roads_distance]);
+		var txt = '';
+		_.each(objUsers, function(v, k) {
+			txt += "select add_user(" + k + ",'" + v + "','" + randomcolor() + "',true);\n";
 		});
-		json2mark.json2table('osm_objects', [counter.ways, counter.nodes, counter.relations]);
-		json2mark.json2table('users', counter.users);
-		json2mark.json2table('tags', counter.tags);
-		json2mark.json2table('roads-distance', [counter.roads_distance]);
+		fs.writeFile('users.sql', txt);
+
 	});
 }, 2000);
